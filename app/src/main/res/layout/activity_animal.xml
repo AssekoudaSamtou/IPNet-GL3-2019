@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".sqlite.AnimalActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/animalFormTitle"
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@string/animal_name"
+            android:textStyle="bold|italic"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/edtAnimal_name"
+            android:inputType="text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/animal_desc"
+            android:textStyle="bold|italic"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:inputType="text"
+            android:id="@+id/edtAnimal_desc"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/animal_img"
+            android:outlineAmbientShadowColor="@color/cardview_dark_background"
+            android:textStyle="bold|italic"
+            android:textSize="15sp"/>
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/animal_preview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="40dp"
+            android:src="@drawable/icons8_music_record_240px"
+            app:civ_border_color="#3f51b5"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#3f51b5"
+            app:civ_shadow_radius="10" />
+
+        <Button
+            android:layout_width="50sp"
+            android:layout_marginStart="30sp"
+            android:onClick="dispatchTakePictureIntent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/camera"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/animal_save"
+        android:onClick="saveAnimal"
+        android:id="@+id/btn_save"
+        android:textStyle="bold|italic"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="7dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

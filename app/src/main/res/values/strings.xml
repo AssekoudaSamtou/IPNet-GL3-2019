@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">IPNet–GL3–2019</string>
+    <string name="login_label">Log in</string>
+    <string name="username">Username : </string>
+    <string name="password">Password : </string>
+    <string name="submit">Connexion</string>
+    <string name="animalFormTitle">Animal</string>
+
+    <!-- TODO: Animal -->
+    <string name="menu_item_1">Animals List</string>
+    <string name="menu_item_detail">details</string>
+    <string name="menu_item_delete">delete</string>
+    <string name="menu_item_edit">edit</string>
+    <string name="menu_item_2">Nothing</string>
+    <string name="animal_name">Name</string>
+    <string name="animal_desc">Description</string>
+    <string name="animal_img">Image</string>
+    <string name="animal_save">SAVE</string>
+    <string name="context_menu_header">select an action</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">%s blank fragment</string>
+</resources>

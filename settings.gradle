@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='IPNet-GL3-2019'
