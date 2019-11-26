@@ -1,5 +1,6 @@
 package com.samtou.ipnet_gl3_2019.sqlite
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -18,6 +19,15 @@ class AnimalController(context: Context) {
         wdb = db.writableDatabase
     }
 
+    @SuppressLint("Recycle")
+    fun find(id: Int): Animal {
+//        val query = "SELECT * FROM animal WHERE id=$id"
+//        val c: Cursor = rdb.rawQuery(query, Array(1){"*"})
+        val c: Cursor = rdb.query("animal", Array(1){"*"}, "id=$id",  null, null, null, null)
+        c.moveToFirst()
+        return Animal(c.getInt(0), c.getString(1), c.getString(2), c.getBlob(3))
+    }
+
     fun insertAnimal(animal: Animal) {
         val cv = ContentValues()
         cv.put(IPnetDB.NAME, animal.name)
@@ -27,12 +37,11 @@ class AnimalController(context: Context) {
         wdb.insert("animal", null, cv)
     }
 
-    fun updateAnimal(animal: Animal) :Boolean {
+    fun updateAnimal(animal: Animal?) :Boolean {
         val cv = ContentValues()
-        cv.put(IPnetDB.NAME, animal.name)
+        cv.put(IPnetDB.NAME, animal!!.name)
         cv.put(IPnetDB.DESCRIPTION, animal.description)
         cv.put(IPnetDB.IMG, animal.image)
-        wdb.update("animal", cv, null, null)
 
         val status = wdb.update("animal", cv, "id="+animal.id, null)
 
@@ -44,10 +53,10 @@ class AnimalController(context: Context) {
         return status != -1
     }
 
-    fun getAllAnimals(): List<Animal> {
+    fun getAllAnimals(): ArrayList<Animal> {
 
         val animals: ArrayList<Animal> = ArrayList()
-        val c: Cursor = wdb.query("animal", Array(1){"*"}, null,  null, null, null, null)
+        val c: Cursor = wdb.query("animal", Array(1){"*"}, null,  null, null, null, "id DESC")
         var id:Int
         var name:String
         var description:String

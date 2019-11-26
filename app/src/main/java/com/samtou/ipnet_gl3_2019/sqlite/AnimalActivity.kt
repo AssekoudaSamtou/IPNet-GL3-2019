@@ -2,6 +2,7 @@ package com.samtou.ipnet_gl3_2019.sqlite
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -9,6 +10,7 @@ import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -27,6 +29,11 @@ class AnimalActivity : AppCompatActivity() {
     lateinit var animalController: AnimalController
     lateinit var animalNameEdt : EditText
     lateinit var animalDescEdt : EditText
+    lateinit var btn: Button
+
+//    if update
+    var animal: Animal? = null
+    var is_update: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +43,20 @@ class AnimalActivity : AppCompatActivity() {
         imageView = findViewById(R.id.animal_preview)
         animalNameEdt = findViewById(R.id.edtAnimal_name)
         animalDescEdt = findViewById(R.id.edtAnimal_desc)
+        btn = findViewById(R.id.btn_save)
+
+        if (intent.extras != null) {
+            is_update = intent.getBooleanExtra("is_update", false)
+            val id = intent.getIntExtra("animal_id", 1999)
+            if (is_update) {
+                Toast.makeText(this, "animal id : $id", Toast.LENGTH_LONG).show()
+                animal = animalController.find(id)
+                animalNameEdt.setText(animal!!.name)
+                animalDescEdt.setText(animal!!.description)
+                imageView.setImageBitmap(BitmapFactory.decodeByteArray(animal!!.image, 0, animal!!.image.size))
+                currentPhotoBytes = animal!!.image
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,7 +67,6 @@ class AnimalActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_list) {
             val animalListIntent = Intent(this, AnimalListActivity::class.java)
-//            animalListIntent.put
             startActivity(animalListIntent)
             return true
         }
@@ -80,10 +100,20 @@ class AnimalActivity : AppCompatActivity() {
     }
 
     fun saveAnimal(view: View) {
-        val animal = Animal(1, animalNameEdt.text.toString(), animalDescEdt.text.toString(), currentPhotoBytes)
-        animalController.insertAnimal(animal)
-        Toast.makeText(this, "animal saved", Toast.LENGTH_LONG).show()
 
+        if (is_update) {
+            animal!!.name = animalNameEdt.text.toString()
+            animal!!.description = animalDescEdt.text.toString()
+            animal!!.image = currentPhotoBytes
+            val status: Boolean = animalController.updateAnimal(animal)
+            Toast.makeText(this, "$status", Toast.LENGTH_LONG).show()
+        }
+        else {
+            val animal = Animal(1, animalNameEdt.text.toString(), animalDescEdt.text.toString(), currentPhotoBytes)
+            animalController.insertAnimal(animal)
+        }
+
+//        Toast.makeText(this, "animal saved", Toast.LENGTH_LONG).show()
         val animalListIntent = Intent(this, AnimalListActivity::class.java)
         startActivity(animalListIntent)
     }
