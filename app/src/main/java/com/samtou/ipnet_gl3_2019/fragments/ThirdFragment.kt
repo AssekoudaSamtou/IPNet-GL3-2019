@@ -1,6 +1,8 @@
 package com.samtou.ipnet_gl3_2019.fragments
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.samtou.ipnet_gl3_2019.MainActivity
 
 import com.samtou.ipnet_gl3_2019.R
 
@@ -17,6 +20,7 @@ import com.samtou.ipnet_gl3_2019.R
  */
 class ThirdFragment : Fragment() {
     @BindView(R.id.txtTname) lateinit var textView: TextView
+    lateinit var preferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,9 +29,11 @@ class ThirdFragment : Fragment() {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_third, container, false)
         textView = view.findViewById(R.id.txtTname)
+        preferences = context!!.getSharedPreferences(MainActivity.IPNETPREF, Context.MODE_PRIVATE)
 
         ButterKnife.bind(this, view)
         textView.text = getString(R.string.hello_blank_fragment, "Third")
+        textView.text = preferences.getString("username", null) + preferences.getString("password", null)
         return view
     }
 

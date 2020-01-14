@@ -20,4 +20,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">%s blank fragment</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="message">Message</string>
+    <string name="send">SEND</string>
+    <string name="get_current_location">GET CURRENT LOCATION</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="altitude">Altitude</string>
+    <string name="pr_cision">Précision</string>
+    <string name="title_activity_canvas">CanvasActivity</string>
+    <string name="rotate">ROTATE</string>
 </resources>

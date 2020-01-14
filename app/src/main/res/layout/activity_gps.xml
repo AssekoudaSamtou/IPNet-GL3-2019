@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Permissions.GPSActivity">
+
+    <EditText
+        android:id="@+id/longitudeEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/longitude"
+        android:inputType="numberDecimal"
+        android:layout_margin="10dp"
+        android:textSize="22sp"/>
+
+    <EditText
+        android:id="@+id/latitudeEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/latitude"
+        android:inputType="numberDecimal"
+        android:layout_margin="10dp"
+        android:textSize="22sp"/>
+
+    <EditText
+        android:id="@+id/altitudeEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/altitude"
+        android:inputType="numberDecimal"
+        android:layout_margin="10dp"
+        android:textSize="22sp"/>
+
+    <EditText
+        android:id="@+id/precisionEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pr_cision"
+        android:inputType="numberDecimal"
+        android:layout_margin="10dp"
+        android:textSize="22sp"/>
+
+    <Button
+        android:id="@+id/getPositionBtn"
+        android:onClick="getPosition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/get_current_location"
+        android:background="@color/design_default_color_primary"/>
+
+</LinearLayout>

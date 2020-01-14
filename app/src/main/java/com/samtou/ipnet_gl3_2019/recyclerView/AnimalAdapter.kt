@@ -1,5 +1,6 @@
 package com.samtou.ipnet_gl3_2019.recyclerView
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -7,6 +8,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.RecyclerView
 import com.samtou.ipnet_gl3_2019.R
 import com.samtou.ipnet_gl3_2019.sqlite.Animal
@@ -23,7 +25,8 @@ class AnimalAdapter(val context: Context?, var animals: ArrayList<Animal>): Recy
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalViewHolder {
         view = LayoutInflater.from(context).inflate(R.layout.animal_item, parent, false)
-
+//        view.startActionMode(ActionMode.Callback)
+//        context!!.actionBar
         view.setOnCreateContextMenuListener(this)
         animalController = AnimalController(view.context)
 
@@ -63,9 +66,6 @@ class AnimalAdapter(val context: Context?, var animals: ArrayList<Animal>): Recy
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             1 -> {
-//                Toast.makeText(view.context, "'delete' action selected", Toast.LENGTH_LONG).show()
-//                Toast.makeText(view.context, "animal No"+ currentAnimal!!.id+"deleted", Toast.LENGTH_LONG).show()
-
                 animalController.deleteAnimal(currentAnimal!!.id)
                 this.animals = animalController.getAllAnimals()
                 this.notifyDataSetChanged()

@@ -23,6 +23,7 @@ class AnimalListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        actionBar
         setContentView(R.layout.activity_animal_list)
 
         recyclerView = findViewById(R.id.rclAnimal)
@@ -35,6 +36,16 @@ class AnimalListActivity : AppCompatActivity() {
 
         this.animals.addAll(animalController.getAllAnimals())
         this.adapter.notifyDataSetChanged()
+    }
+
+    override fun onPause() {
+        this.finish()
+        super.onPause()
+    }
+
+    override fun onBackPressed() {
+
+        super.onBackPressed()
     }
 
     override fun onCreateContextMenu(

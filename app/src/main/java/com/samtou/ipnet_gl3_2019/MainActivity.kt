@@ -1,6 +1,8 @@
 package com.samtou.ipnet_gl3_2019
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,6 +18,12 @@ class MainActivity : AppCompatActivity() {
 
     @BindView(R.id.edtUsername) lateinit var usernameEdt: EditText
     @BindView(R.id.edtPassword) lateinit var passwordEdt: EditText
+    lateinit var preferences: SharedPreferences
+    lateinit var editor: SharedPreferences.Editor
+
+    companion object{
+        const val IPNETPREF = "IPNETPREF"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         usernameEdt =findViewById(R.id.edtUsername)
         passwordEdt = findViewById(R.id.edtPassword)
+        preferences = getSharedPreferences(IPNETPREF, Context.MODE_PRIVATE)
+        editor = preferences.edit()
     }
 
     override fun onResume() {
@@ -45,6 +55,11 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("boolean", true)
             intent.putExtra("decimal", 10.2)
             intent.putExtra("user", User(10, "samtou", "Asse12", "admin"))
+
+            editor.putString("username", username)
+            editor.putString("password", password)
+            editor.putString("token", "%ùùmytoken00ABc12klvjckjflsdkf")
+            editor.commit()
             startActivity(intent)
         }
     }
